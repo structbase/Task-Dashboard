@@ -25,12 +25,18 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             </div>
 
             <div>
-                <select className="" value={} onChange={}>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                <select
+                    className=""
+                    value={task.status}
+                    onChange={(e) =>
+                        onStatusChange(task.id, e.target.value as TaskStatus)
+                    }
+                >
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
                 </select>
-                <button className="" onClick={}>
+                <button className="" onClick={() => onDelete(task.id)}>
                     Delete
                 </button>
             </div>

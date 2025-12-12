@@ -16,19 +16,21 @@ export const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
     const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newStatus = e.target.value as TaskStatus | "all";
         setStatusFilter(newStatus);
-        onFilterChange({});
+        onFilterChange({
+            status: newStatus === "all" ? undefined : newStatus,
+            priority: priorityFilter === "all" ? undefined : priorityFilter,
+        });
     };
 
     // handle priority change
     const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newPriority = e.target.value as
-            | "low"
-            | "medium"
-            | "hight"
-            | "all";
+        const newPriority = e.target.value as "low" | "medium" | "high" | "all";
         setPriorityFilter(newPriority);
 
-        onFilterChange({});
+        onFilterChange({
+            status: statusFilter === "all" ? undefined : statusFilter,
+            priority: newPriority === "all" ? undefined : newPriority,
+        });
     };
     return (
         <div>
@@ -36,7 +38,10 @@ export const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
                 <div>
                     <div>
                         <label htmlFor="">Status</label>
-                        <select value={} onChange={}>
+                        <select
+                            value={statusFilter}
+                            onChange={handleStatusChange}
+                        >
                             <option value="All">All Statuses</option>
                             <option value="Pending">All Statuses</option>
                             <option value="In-Progress">All Statuses</option>
@@ -45,7 +50,10 @@ export const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
                     </div>
                     <div>
                         <label htmlFor="">Priority</label>
-                        <select value={} onChange={}>
+                        <select
+                            value={priorityFilter}
+                            onChange={handlePriorityChange}
+                        >
                             <option value="All">All Priorities</option>
                             <option value="High">High</option>
                             <option value="Medium">Medium</option>

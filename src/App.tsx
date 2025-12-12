@@ -88,14 +88,18 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <h1>Task Dashboard</h1>
-            <Dashboard
-                tasks={tasks}
-                onAddTask={handleAddTask}
-                onUpdateStatus={handleUpdateStatus}
-                onDeleteTask={handleDeleteTask}
-            />
+        <div className="App container-fluid py-4">
+            <div className="row">
+                <div className="col-12">
+                    <h1 className="text-center mb-4">Task Dashboard</h1>
+                    <Dashboard
+                        tasks={tasks}
+                        onAddTask={handleAddTask}
+                        onUpdateStatus={handleUpdateStatus}
+                        onDeleteTask={handleDeleteTask}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

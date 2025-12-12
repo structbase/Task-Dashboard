@@ -9,10 +9,10 @@ export const TaskList: React.FC<TaskListProps> = ({
 }) => {
     if (tasks.length === 0) {
         return (
-            <div>
-                <div>
-                    <h5>No tasks found</h5>
-                    <p>Create new Task or try adjusting your filters</p>
+            <div className="text-center py-5">
+                <div className="alert alert-info" role="alert">
+                    <h5 className="alert-heading">No tasks found</h5>
+                    <p className="mb-0">Create a new task or try adjusting your filters</p>
                 </div>
             </div>
         );

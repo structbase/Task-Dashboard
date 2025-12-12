@@ -68,27 +68,49 @@ export const Dashboard: React.FC<DashboardProps> = ({
     };
 
     return (
-        <div>
-            {/* Task Form Section - For creating new tasks */}
-            <div>
-                <h2>Add New Task</h2>
-                <TaskForm onSubmit={handleAddTask} />
-            </div>
+        <div className="container-fluid">
+            <div className="row g-4">
+                {/* Task Form Section - For creating new tasks */}
+                <div className="col-12 col-lg-4">
+                    <div className="card shadow-sm">
+                        <div className="card-header bg-primary text-white">
+                            <h2 className="h5 mb-0">Add New Task</h2>
+                        </div>
+                        <div className="card-body">
+                            <TaskForm onSubmit={handleAddTask} />
+                        </div>
+                    </div>
+                </div>
 
-            {/* Filter Section - For filtering and sorting tasks */}
-            <div>
-                <h2>Filter Tasks</h2>
-                <TaskFilter onFilterChange={handleFilterChange} />
-            </div>
+                {/* Filter and Task List Section */}
+                <div className="col-12 col-lg-8">
+                    {/* Filter Section - For filtering and sorting tasks */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-secondary text-white">
+                            <h2 className="h5 mb-0">Filter & Sort Tasks</h2>
+                        </div>
+                        <div className="card-body">
+                            <TaskFilter onFilterChange={handleFilterChange} />
+                        </div>
+                    </div>
 
-            {/* Task List Section - Displays filtered and sorted tasks */}
-            <div>
-                <h2>Tasks ({filteredTasks.length})</h2>
-                <TaskList
-                    tasks={filteredTasks}
-                    onStatusChange={handleStatusChange}
-                    onDelete={handleDeleteTask}
-                />
+                    {/* Task List Section - Displays filtered and sorted tasks */}
+                    <div className="card shadow-sm">
+                        <div className="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h2 className="h5 mb-0">Tasks</h2>
+                            <span className="badge bg-light text-dark fs-6">
+                                {filteredTasks.length}
+                            </span>
+                        </div>
+                        <div className="card-body">
+                            <TaskList
+                                tasks={filteredTasks}
+                                onStatusChange={handleStatusChange}
+                                onDelete={handleDeleteTask}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -58,67 +58,77 @@ export const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
 
     return (
         <div>
-            <div>
-                {/* Search Input */}
-                <div>
-                    <label htmlFor="search-filter">Search Tasks</label>
-                    <input
-                        type="text"
-                        id="search-filter"
-                        placeholder="Search by title or description..."
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                    />
+            {/* Search Input */}
+            <div className="mb-3">
+                <label htmlFor="search-filter" className="form-label">
+                    Search Tasks
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="search-filter"
+                    placeholder="Search by title or description..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+            </div>
+
+            <div className="row g-3">
+                {/* Status Filter */}
+                <div className="col-md-4">
+                    <label htmlFor="status-filter" className="form-label">
+                        Status
+                    </label>
+                    <select
+                        className="form-select"
+                        id="status-filter"
+                        value={statusFilter}
+                        onChange={handleStatusChange}
+                    >
+                        <option value="all">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
                 </div>
 
-                <div>
-                    {/* Status Filter */}
-                    <div>
-                        <label htmlFor="status-filter">Status</label>
-                        <select
-                            id="status-filter"
-                            value={statusFilter}
-                            onChange={handleStatusChange}
-                        >
-                            <option value="all">All Statuses</option>
-                            <option value="pending">Pending</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
+                {/* Priority Filter */}
+                <div className="col-md-4">
+                    <label htmlFor="priority-filter" className="form-label">
+                        Priority
+                    </label>
+                    <select
+                        className="form-select"
+                        id="priority-filter"
+                        value={priorityFilter}
+                        onChange={handlePriorityChange}
+                    >
+                        <option value="all">All Priorities</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
 
-                    {/* Priority Filter */}
-                    <div>
-                        <label htmlFor="priority-filter">Priority</label>
-                        <select
-                            id="priority-filter"
-                            value={priorityFilter}
-                            onChange={handlePriorityChange}
-                        >
-                            <option value="all">All Priorities</option>
-                            <option value="high">High</option>
-                            <option value="medium">Medium</option>
-                            <option value="low">Low</option>
-                        </select>
-                    </div>
-
-                    {/* Sort Options */}
-                    <div>
-                        <label htmlFor="sort-filter">Sort By</label>
-                        <select
-                            id="sort-filter"
-                            value={sortOption}
-                            onChange={handleSortChange}
-                        >
-                            <option value="">No Sorting</option>
-                            <option value="title-asc">Title (A-Z)</option>
-                            <option value="title-desc">Title (Z-A)</option>
-                            <option value="date-asc">Due Date (Earliest)</option>
-                            <option value="date-desc">Due Date (Latest)</option>
-                            <option value="priority-high">Priority (High to Low)</option>
-                            <option value="priority-low">Priority (Low to High)</option>
-                        </select>
-                    </div>
+                {/* Sort Options */}
+                <div className="col-md-4">
+                    <label htmlFor="sort-filter" className="form-label">
+                        Sort By
+                    </label>
+                    <select
+                        className="form-select"
+                        id="sort-filter"
+                        value={sortOption}
+                        onChange={handleSortChange}
+                    >
+                        <option value="">No Sorting</option>
+                        <option value="title-asc">Title (A-Z)</option>
+                        <option value="title-desc">Title (Z-A)</option>
+                        <option value="date-asc">Due Date (Earliest)</option>
+                        <option value="date-desc">Due Date (Latest)</option>
+                        <option value="priority-high">Priority (High to Low)</option>
+                        <option value="priority-low">Priority (Low to High)</option>
+                    </select>
                 </div>
             </div>
         </div>

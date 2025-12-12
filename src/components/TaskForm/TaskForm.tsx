@@ -90,10 +90,13 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     return (
         <form onSubmit={handleSubmit}>
             {/* Task Title Input - Required field */}
-            <div>
-                <label htmlFor="title">Task Title</label>
+            <div className="mb-3">
+                <label htmlFor="title" className="form-label">
+                    Task Title
+                </label>
                 <input
                     type="text"
+                    className="form-control"
                     id="title" // Must match TaskFormData property name for handleChange to work
                     value={taskData.title} // Controlled component - value from state
                     onChange={handleChange} // Update state when user types
@@ -102,19 +105,26 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             </div>
 
             {/* Task Description Textarea - Optional field for additional details */}
-            <div>
-                <label htmlFor="description">Description</label>
+            <div className="mb-3">
+                <label htmlFor="description" className="form-label">
+                    Description
+                </label>
                 <textarea
+                    className="form-control"
                     id="description" // Must match TaskFormData property name
                     value={taskData.description}
                     onChange={handleChange}
+                    rows={3}
                 ></textarea>
             </div>
 
             {/* Status Dropdown - Task progress state */}
-            <div>
-                <label htmlFor="status">Status</label>
+            <div className="mb-3">
+                <label htmlFor="status" className="form-label">
+                    Status
+                </label>
                 <select
+                    className="form-select"
                     id="status" // Must match TaskFormData property name
                     value={taskData.status} // Current status value from state
                     onChange={handleChange}
@@ -127,9 +137,12 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             </div>
 
             {/* Priority Dropdown - Task importance level */}
-            <div>
-                <label htmlFor="priority">Priority</label>
+            <div className="mb-3">
+                <label htmlFor="priority" className="form-label">
+                    Priority
+                </label>
                 <select
+                    className="form-select"
                     id="priority" // Must match TaskFormData property name
                     value={taskData.priority}
                     onChange={handleChange}
@@ -141,10 +154,13 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             </div>
 
             {/* Due Date Input - Date picker */}
-            <div>
-                <label htmlFor="dueDate">Due Date</label>
+            <div className="mb-3">
+                <label htmlFor="dueDate" className="form-label">
+                    Due Date
+                </label>
                 <input
                     type="date"
+                    className="form-control"
                     id="dueDate" // Must match TaskFormData property name
                     value={taskData.dueDate}
                     onChange={handleChange}
@@ -152,7 +168,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             </div>
 
             {/* Submit Button - Text changes based on edit/create mode (dynamic button label) */}
-            <button type="submit">
+            <button type="submit" className="btn btn-primary w-100">
                 {isEditMode ? "Update Task" : "Add Task"}
             </button>
         </form>

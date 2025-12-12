@@ -16,92 +16,86 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         });
     };
 
-    // Get status badge color
-    const getStatusColor = (status: string): string => {
-        switch (status) {
-            case "pending":
-                return "#ffc107"; // Yellow
-            case "in-progress":
-                return "#0d6efd"; // Blue
-            case "completed":
-                return "#198754"; // Green
-            default:
-                return "#6c757d"; // Gray
-        }
-    };
-
-    // Get priority badge color
-    const getPriorityColor = (priority: string): string => {
-        switch (priority) {
-            case "high":
-                return "#dc3545"; // Red
-            case "medium":
-                return "#ffc107"; // Yellow
-            case "low":
-                return "#198754"; // Green
-            default:
-                return "#6c757d"; // Gray
-        }
-    };
-
     // Capitalize first letter for display
     const capitalize = (str: string): string => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    // Get Bootstrap badge class based on status
+    const getStatusBadgeClass = (status: string): string => {
+        switch (status) {
+            case "pending":
+                return "bg-warning";
+            case "in-progress":
+                return "bg-primary";
+            case "completed":
+                return "bg-success";
+            default:
+                return "bg-secondary";
+        }
+    };
+
+    // Get Bootstrap badge class based on priority
+    const getPriorityBadgeClass = (priority: string): string => {
+        switch (priority) {
+            case "high":
+                return "bg-danger";
+            case "medium":
+                return "bg-warning";
+            case "low":
+                return "bg-success";
+            default:
+                return "bg-secondary";
+        }
+    };
+
     return (
-        <div className="card mb-3">
-            <div>
-                <h4>{task.title}</h4>
-                <span
-                    style={{
-                        backgroundColor: getStatusColor(task.status),
-                        color: "white",
-                        padding: "4px 8px",
-                        borderRadius: "4px",
-                        fontSize: "12px",
-                        marginLeft: "10px",
-                    }}
-                >
-                    {capitalize(task.status.replace("-", " "))}
-                </span>
-            </div>
-            <div>
-                <p>{task.description}</p>
-                <div>
-                    <div>
-                        <strong>Due Date:</strong> {formatDate(task.dueDate)}
-                    </div>
-                </div>
-                <div>
-                    <strong>Priority:</strong>
-                    <span
-                        style={{
-                            backgroundColor: getPriorityColor(task.priority),
-                            color: "white",
-                            padding: "4px 8px",
-                            borderRadius: "4px",
-                            fontSize: "12px",
-                            marginLeft: "10px",
-                        }}
-                    >
-                        {capitalize(task.priority)}
+        <div className="card mb-3 shadow-sm">
+            <div className="card-body">
+                <div className="d-flex justify-content-between align-items-start mb-3">
+                    <h5 className="card-title mb-0">{task.title}</h5>
+                    <span className={`badge ${getStatusBadgeClass(task.status)}`}>
+                        {capitalize(task.status.replace("-", " "))}
                     </span>
                 </div>
-            </div>
+                
+                {task.description && (
+                    <p className="card-text text-muted mb-3">{task.description}</p>
+                )}
+                
+                <div className="d-flex flex-wrap gap-3 mb-3">
+                    <div>
+                        <strong>Due Date:</strong>{" "}
+                        <span className="text-muted">{formatDate(task.dueDate)}</span>
+                    </div>
+                    <div>
+                        <strong>Priority:</strong>{" "}
+                        <span className={`badge ${getPriorityBadgeClass(task.priority)}`}>
+                            {capitalize(task.priority)}
+                        </span>
+                    </div>
+                </div>
 
-            <div>
-                <select
-                    value={task.status}
-                    onChange={(e) =>
-                        onStatusChange(task.id, e.target.value as TaskStatus)
-                    }
-                >
-                    <option value="pending">Pending</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                </select>
-                <button onClick={() => onDelete(task.id)}>Delete</button>
+                <div className="d-flex gap-2">
+                    <select
+                        className="form-select form-select-sm"
+                        style={{ maxWidth: "200px" }}
+                        value={task.status}
+                        onChange={(e) =>
+                            onStatusChange(task.id, e.target.value as TaskStatus)
+                        }
+                    >
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => onDelete(task.id)}
+                    >
+                        Delete
+                    </button>
+                </div>
             </div>
         </div>
     );

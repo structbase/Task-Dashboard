@@ -54,23 +54,33 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             <div className="card-body">
                 <div className="d-flex justify-content-between align-items-start mb-3">
                     <h5 className="card-title mb-0">{task.title}</h5>
-                    <span className={`badge ${getStatusBadgeClass(task.status)}`}>
+                    <span
+                        className={`badge ${getStatusBadgeClass(task.status)}`}
+                    >
                         {capitalize(task.status.replace("-", " "))}
                     </span>
                 </div>
-                
+
                 {task.description && (
-                    <p className="card-text text-muted mb-3">{task.description}</p>
+                    <p className="card-text text-muted mb-3">
+                        {task.description}
+                    </p>
                 )}
-                
+
                 <div className="d-flex flex-wrap gap-3 mb-3">
                     <div>
                         <strong>Due Date:</strong>{" "}
-                        <span className="text-muted">{formatDate(task.dueDate)}</span>
+                        <span className="text-muted">
+                            {formatDate(task.dueDate)}
+                        </span>
                     </div>
                     <div>
                         <strong>Priority:</strong>{" "}
-                        <span className={`badge ${getPriorityBadgeClass(task.priority)}`}>
+                        <span
+                            className={`badge ${getPriorityBadgeClass(
+                                task.priority
+                            )}`}
+                        >
                             {capitalize(task.priority)}
                         </span>
                     </div>
@@ -82,7 +92,10 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                         style={{ maxWidth: "200px" }}
                         value={task.status}
                         onChange={(e) =>
-                            onStatusChange(task.id, e.target.value as TaskStatus)
+                            onStatusChange(
+                                task.id,
+                                e.target.value as TaskStatus
+                            )
                         }
                     >
                         <option value="pending">Pending</option>
